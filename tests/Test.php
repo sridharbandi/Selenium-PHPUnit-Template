@@ -2,8 +2,7 @@
 require __DIR__ .'/../vendor/autoload.php';
 include __DIR__.'/../pageobjects/GoogleSearchPage.php';
 include __DIR__.'/../pageobjects/SearchResultsPage.php';
-use Facebook\WebDriver\Remote\RemoteWebDriver;
-use Facebook\WebDriver\Remote\DesiredCapabilities;
+include __DIR__.'/../driverutil/DriverUtil.php';
 use PHPUnit\Framework\TestCase;
 
 class Test extends TestCase
@@ -15,9 +14,8 @@ class Test extends TestCase
 
     public function setUp()
     {
-        $host = 'http://localhost:4444/wd/hub';
-        $desired_capabilities = DesiredCapabilities::chrome();
-        $this->webDriver = RemoteWebDriver::create($host, $desired_capabilities);
+        global $argv;
+        $this->webDriver = DriverUtil::getDriver($argv[2]);
         $this->googlesearchpage = new GoogleSearchPage($this->webDriver);
         $this->searchresultspage = new SearchResultsPage($this->webDriver);
     }
@@ -34,8 +32,6 @@ class Test extends TestCase
         $this->googlesearchpage->searchFor('Selenium');
         $this->assertTrue($this->searchresultspage->isSeleniumResultPresent(),'Selenium Result Found');
     }
-
-
 
     public function tearDown()
     {
