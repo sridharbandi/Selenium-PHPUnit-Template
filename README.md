@@ -1,6 +1,7 @@
-## PHP Facebook Selenium Webdriver & PHPUnit Template with Page Object Model
+## PHP Facebook Webdriver & PHPUnit Example Project with Page Object Model
 
 ### How to use?
+
 Create the Page Objects of your Web application under **_pageobjects_** package, call those Page Objects in  [PHPUnit](https://phpunit.de/) tests under **_tests_** package (Sample Page Objects, testcase included in this template)
 
 ### How to run?
